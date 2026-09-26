@@ -1,6 +1,6 @@
 # SPEC 01 — Feed como pantalla home
 
-> **Estado:** Borrador
+> **Estado:** Aprobado
 > **Depende de:** ninguna
 > **Fecha:** 2026-09-26
 > **Objetivo:** Implementar la pantalla Feed del mockup `references/pantallas/feed.dc.html` como home `/` con datos mock, likes en memoria y sidebar responsive.
