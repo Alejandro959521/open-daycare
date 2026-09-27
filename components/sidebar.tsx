@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import type { ReactNode } from "react";
 import { sala, usuario } from "@/app/data/mock";
 
@@ -97,10 +100,19 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-export default function Sidebar({ active = "feed" }: SidebarProps) {
+interface SidebarContentProps {
+  active: NavKey;
+  onNavigate: () => void;
+}
+
+function SidebarContent({ active, onNavigate }: SidebarContentProps) {
   return (
-    <aside className="sticky top-0 flex h-screen w-[248px] flex-none flex-col border-r border-line-200 bg-surface px-4 py-6">
-      <Link href="/" className="flex items-center gap-[11px] px-2 pb-[22px] pt-1">
+    <>
+      <Link
+        href="/"
+        onClick={onNavigate}
+        className="flex items-center gap-[11px] px-2 pb-[22px] pt-1"
+      >
         <div className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[12px] bg-[linear-gradient(155deg,#F8C3A8,#F2937A)]">
           <svg
             width="21"
@@ -123,6 +135,7 @@ export default function Sidebar({ active = "feed" }: SidebarProps) {
       </Link>
       <Link
         href="/crear-publicacion"
+        onClick={onNavigate}
         className="mb-[18px] flex w-full items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] p-3 text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]"
       >
         <svg
@@ -144,6 +157,7 @@ export default function Sidebar({ active = "feed" }: SidebarProps) {
           <Link
             key={item.key}
             href={item.href}
+            onClick={onNavigate}
             className={
               item.key === active
                 ? "flex items-center gap-3 rounded-xl bg-[#FBE3D8] px-3 py-[11px] text-[14.5px] font-extrabold text-coral-200"
@@ -166,6 +180,7 @@ export default function Sidebar({ active = "feed" }: SidebarProps) {
           </div>
           <Link
             href="/login"
+            onClick={onNavigate}
             title="Cerrar sesión"
             className="flex h-8 w-8 flex-none items-center justify-center rounded-[10px] bg-cream text-muted-200"
           >
@@ -184,6 +199,80 @@ export default function Sidebar({ active = "feed" }: SidebarProps) {
           </Link>
         </div>
       </div>
-    </aside>
+    </>
+  );
+}
+
+export default function Sidebar({ active = "feed" }: SidebarProps) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-line-200 bg-surface px-4 py-3 lg:hidden">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Abrir menú"
+          aria-expanded={open}
+          aria-controls="sidebar-drawer"
+          className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[12px] bg-cream text-muted-400"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-[11px]">
+          <div className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[12px] bg-[linear-gradient(155deg,#F8C3A8,#F2937A)]">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+            </svg>
+          </div>
+          <div>
+            <div className="font-display text-[17px] font-semibold leading-none text-ink">OpenDayCare</div>
+            <div className="mt-0.5 text-[11.5px] text-muted-100">Sala {sala.nombre}</div>
+          </div>
+        </Link>
+      </header>
+
+      <aside className="sticky top-0 hidden h-screen w-[248px] flex-none flex-col border-r border-line-200 bg-surface px-4 py-6 lg:flex">
+        <SidebarContent active={active} onNavigate={() => setOpen(false)} />
+      </aside>
+
+      <div
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
+        className={`fixed inset-0 z-30 bg-[rgba(63,54,46,.45)] transition-opacity duration-300 lg:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      />
+
+      <aside
+        id="sidebar-drawer"
+        className={`fixed left-0 top-0 z-40 flex h-screen w-[248px] flex-col border-r border-line-200 bg-surface px-4 py-6 transition-transform duration-300 lg:hidden ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <SidebarContent active={active} onNavigate={() => setOpen(false)} />
+      </aside>
+    </>
   );
 }
