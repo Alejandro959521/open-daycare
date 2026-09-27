@@ -45,5 +45,13 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - /spec Usaremos esta habilidad para crear las especificaciones.
 - /spec-impl Usaremos esta skill para hacer las implementaciones.
 
+## Agentes
+
+- `spec-verifier` — Verifica y marca los criterios de aceptación de un archivo spec. Usa este agente cuando el usuario pide revisar un spec, verificar pantallas contra mockups, o marcar los checkboxes de aceptación.
+
+## Comandos
+
+- `Verify Spec` — Verifica los criterios de aceptación de un spec contra mockups o la implementación actual.
+
 ## Reglas de código  
 - Usar código limpio, nombres, funciones, variables, etc. en inglés.   
