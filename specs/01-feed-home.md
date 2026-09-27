@@ -1,6 +1,6 @@
 # SPEC 01 — Feed como pantalla home
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** ninguna
 > **Fecha:** 2026-09-26
 > **Objetivo:** Implementar la pantalla Feed del mockup `references/pantallas/feed.dc.html` como home `/` con datos mock, likes en memoria y sidebar responsive.
@@ -77,15 +77,15 @@ Antes del paso 1, leer los docs de esta versión de Next.js en `node_modules/nex
 
 ## Criterios de aceptación
 
-- [ ] `/` muestra las 3 publicaciones del mockup (logro, actividad con foto, anuncio) sin errores en consola.
-- [ ] Fondo `#F6ECDF`, tarjetas y sidebar `#FFFDF9` con borde `#ECE0D0`, texto principal `#3F362E`.
-- [ ] Títulos en Fredoka y cuerpo en Nunito servidas por `next/font` (sin `<link>` a fonts.googleapis.com en el HTML).
-- [ ] Sidebar desktop fijo de 248px con Feed activo (fondo `#FBE3D8`, texto `#D9583C`).
-- [ ] Bajo 1024px aparece el topbar con hamburguesa; el drawer desliza desde la izquierda sobre un overlay; clic en el overlay o en un enlace lo cierra.
-- [ ] Clic en un corazón incrementa su contador y al recargar vuelve al valor mock.
-- [ ] "Nueva publicación", "Compartí un momento…" y "Editar" apuntan a `/crear-publicacion`; comentarios a `/detalle-publicacion`; el placeholder de foto a `/foto`; Niños/Avisos/Mi cuenta a `/ninos`/`/avisos`/`/mi-cuenta`; cerrar sesión a `/login` (404 esperado hoy).
-- [ ] La cabecera muestra "GUARDERÍA · SALA SOLES", "Buenas, Caro" y "12 niños · martes 17 jun".
-- [ ] `npm run lint` y `npm run build` pasan sin errores.
+- [x] `/` muestra las 3 publicaciones del mockup (logro, actividad con foto, anuncio) sin errores en consola.
+- [x] Fondo `#F6ECDF`, tarjetas y sidebar `#FFFDF9` con borde `#ECE0D0`, texto principal `#3F362E`.
+- [x] Títulos en Fredoka y cuerpo en Nunito servidas por `next/font` (sin `<link>` a fonts.googleapis.com en el HTML).
+- [x] Sidebar desktop fijo de 248px con Feed activo (fondo `#FBE3D8`, texto `#D9583C`).
+- [x] Bajo 1024px aparece el topbar con hamburguesa; el drawer desliza desde la izquierda sobre un overlay; clic en el overlay o en un enlace lo cierra.
+- [x] Clic en un corazón incrementa su contador y al recargar vuelve al valor mock.
+- [x] "Nueva publicación", "Compartí un momento…" y "Editar" apuntan a `/crear-publicacion`; comentarios a `/detalle-publicacion`; el placeholder de foto a `/foto`; Niños/Avisos/Mi cuenta a `/ninos`/`/avisos`/`/mi-cuenta`; cerrar sesión a `/login` (404 esperado hoy).
+- [x] La cabecera muestra "GUARDERÍA · SALA SOLES", "Buenas, Caro" y "12 niños · martes 17 jun".
+- [x] `npm run lint` y `npm run build` pasan sin errores.
 
 ## Decisiones
 
