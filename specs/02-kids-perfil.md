@@ -85,20 +85,20 @@ export function getAvatarColors(nombre: string): { bg: string; textColor: string
 
 ## Criterios de aceptación
 
-- [ ] `/kids` muestra 8 niños en grid 2 columnas con estilo idéntico al mockup.
-- [ ] El buscador filtra las cards en memoria al tipear (case-insensitive).
-- [ ] Cards muestran avatar con inicial + color determinista (tonos masculinos/femeninos).
-- [ ] Badges de alergia muestran solo el primer alérgeno ("MANÍ", "LACTOSA").
-- [ ] Niño sin padres vinculados muestra badge rosa "VINCULAR".
-- [ ] Niño con padres y sin alergia destacada muestra chevron `›` gris.
-- [ ] `/kids/[id]` muestra el perfil completo de un niño con datos del mockup (Mateo Fernández como ejemplo).
-- [ ] Perfil muestra "Alergias y notas" con fondo `#FBDAD6` e icono de advertencia.
-- [ ] Perfil muestra filas de info: fecha de nacimiento, sala, ingreso.
-- [ ] Perfil muestra "Padres vinculados" con badges ACTIVA/PENDIENTE.
-- [ ] Perfil tiene breadcrumb "Volver a Kids" enlazando a `/kids`.
-- [ ] Perfil tiene botón "Editar" enlazando a `/add-kid` y "Resumen del día" enlazando a `/day-summary`.
-- [ ] Sidebar con "Kids" activo (fondo `#FBE3D8`, texto `#D9583C`).
-- [ ] `npm run lint` y `npm run build` pasan sin errores.
+- [x] `/kids` muestra 8 niños en grid 2 columnas con estilo idéntico al mockup.
+- [x] El buscador filtra las cards en memoria al tipear (case-insensitive).
+- [x] Cards muestran avatar con inicial + color determinista (tonos masculinos/femeninos).
+- [x] Badges de alergia muestran solo el primer alérgeno ("MANÍ", "LACTOSA").
+- [x] Niño sin padres vinculados muestra badge rosa "VINCULAR".
+- [x] Niño con padres y sin alergia destacada muestra chevron `›` gris.
+- [x] `/kids/[id]` muestra el perfil completo de un niño con datos del mockup (Mateo Fernández como ejemplo).
+- [x] Perfil muestra "Alergias y notas" con fondo `#FBDAD6` e icono de advertencia.
+- [x] Perfil muestra filas de info: fecha de nacimiento, sala, ingreso.
+- [x] Perfil muestra "Padres vinculados" con badges ACTIVA/PENDIENTE.
+- [x] Perfil tiene breadcrumb "Volver a Kids" enlazando a `/kids`.
+- [x] Perfil tiene botón "Editar" enlazando a `/add-kid` y "Resumen del día" enlazando a `/day-summary`.
+- [x] Sidebar con "Kids" activo (fondo `#FBE3D8`, texto `#D9583C`).
+- [x] `npm run lint` y `npm run build` pasan sin errores.
 
 ## Decisiones
 
