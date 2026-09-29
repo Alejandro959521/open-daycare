@@ -40,8 +40,8 @@ const NAV_ITEMS: NavItem[] = [
   },
   {
     key: "ninos",
-    label: "Niños",
-    href: "/ninos",
+    label: "Kids",
+    href: "/kids",
     icon: (
       <svg
         width="19"
