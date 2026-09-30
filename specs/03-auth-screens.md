@@ -1,6 +1,6 @@
 # SPEC 03 — Pantallas de autenticación (Login y Activar cuenta)
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-09-30
 > **Objetivo:** Implementar las pantallas `/login` y `/activar-cuenta` como mockups visuales sin autenticación real, siguiendo los diseños de `references/pantallas/login.dc.html` y `references/pantallas/activar-cuenta.dc.html`.
@@ -59,27 +59,27 @@ Este spec no introduce nuevas estructuras de datos. Reutiliza los tokens de dise
 
 ## Criterios de aceptación
 
-- [ ] `/login` muestra el layout de dos columnas idéntico al mockup sin errores en consola.
-- [ ] Panel izquierdo del login tiene gradiente naranja (#F6A98E → #F2937A → #EC7E62) con logo, título y subtítulo en blanco.
-- [ ] Formulario de login tiene campos EMAIL y CONTRASEÑA con estilos del mockup (bordes redondeados, fondo blanco).
-- [ ] Enlace "¿Olvidaste tu contraseña?" visible con color `#C5503A`.
-- [ ] Botón "Iniciar sesión" tiene gradiente naranja y sombra.
-- [ ] Validación de email: si el formato es inválido, muestra mensaje de error al intentar enviar.
-- [ ] Validación de contraseña: si está vacía, muestra mensaje de error al intentar enviar.
-- [ ] Clic en "Iniciar sesión" con datos válidos redirige a `/` (feed).
-- [ ] Enlace "Activá tu cuenta" navega a `/activar-cuenta`.
-- [ ] `/activar-cuenta` muestra layout centrado con icono de logo, título y subtítulo.
-- [ ] Tarjeta de info del niño muestra avatar "M" con fondo `#A9D9E8` y texto "Mateo · Sala Soles".
-- [ ] Campos CÓDIGO DE INVITACIÓN, EMAIL y CREAR CONTRASEÑA visibles con estilos del mockup.
-- [ ] Checkbox de autorización visible con texto "Autorizo a la guardería a tomar y compartir fotos de mi hijo dentro de la app."
-- [ ] Checkbox desmarcado: botón "Activar mi cuenta" deshabilitado (opacity reducida, cursor not-allowed).
-- [ ] Checkbox marcado: botón "Activar mi cuenta" habilitado y clickeable.
-- [ ] Validación de email y contraseña en activar-cuenta: muestra errores si son inválidos.
-- [ ] Clic en "Activar mi cuenta" con checkbox marcado y datos válidos redirige a `/` (feed).
-- [ ] Enlace "Iniciar sesión" en activar-cuenta navega a `/login`.
-- [ ] Ambas pantallas usan Fredoka para títulos y Nunito para texto (vía `next/font`).
-- [ ] Ambas pantallas usan los tokens de diseño del spec 01 (fondo `#FBF4EC`, texto `#3F362E`).
-- [ ] `npm run lint` y `npm run build` pasan sin errores.
+- [x] `/login` muestra el layout de dos columnas idéntico al mockup sin errores en consola.
+- [x] Panel izquierdo del login tiene gradiente naranja (#F6A98E → #F2937A → #EC7E62) con logo, título y subtítulo en blanco.
+- [x] Formulario de login tiene campos EMAIL y CONTRASEÑA con estilos del mockup (bordes redondeados, fondo blanco).
+- [x] Enlace "¿Olvidaste tu contraseña?" visible con color `#C5503A`.
+- [x] Botón "Iniciar sesión" tiene gradiente naranja y sombra.
+- [x] Validación de email: si el formato es inválido, muestra mensaje de error al intentar enviar.
+- [x] Validación de contraseña: si está vacía, muestra mensaje de error al intentar enviar.
+- [x] Clic en "Iniciar sesión" con datos válidos redirige a `/` (feed).
+- [x] Enlace "Activá tu cuenta" navega a `/activar-cuenta`.
+- [x] `/activar-cuenta` muestra layout centrado con icono de logo, título y subtítulo.
+- [x] Tarjeta de info del niño muestra avatar "M" con fondo `#A9D9E8` y texto "Mateo · Sala Soles".
+- [x] Campos CÓDIGO DE INVITACIÓN, EMAIL y CREAR CONTRASEÑA visibles con estilos del mockup.
+- [x] Checkbox de autorización visible con texto "Autorizo a la guardería a tomar y compartir fotos de mi hijo dentro de la app."
+- [x] Checkbox desmarcado: botón "Activar mi cuenta" deshabilitado (opacity reducida, cursor not-allowed).
+- [x] Checkbox marcado: botón "Activar mi cuenta" habilitado y clickeable.
+- [x] Validación de email y contraseña en activar-cuenta: muestra errores si son inválidos.
+- [x] Clic en "Activar mi cuenta" con checkbox marcado y datos válidos redirige a `/` (feed).
+- [x] Enlace "Iniciar sesión" en activar-cuenta navega a `/login`.
+- [x] Ambas pantallas usan Fredoka para títulos y Nunito para texto (vía `next/font`).
+- [x] Ambas pantallas usan los tokens de diseño del spec 01 (fondo `#FBF4EC`, texto `#3F362E`).
+- [x] `npm run lint` y `npm run build` pasan sin errores.
 
 ## Decisiones
 
