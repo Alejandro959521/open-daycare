@@ -1,9 +1,36 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ActivarCuentaPage() {
   const [authorized, setAuthorized] = useState(false);
+  const [email, setEmail] = useState("lucia.fernandez@gmail.com");
+  const [password, setPassword] = useState("contraseña");
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newErrors: { email?: string; password?: string } = {};
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      newErrors.email = "Email inválido";
+    }
+
+    if (!password) {
+      newErrors.password = "Contraseña requerida";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+    router.push("/");
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cream p-10">
@@ -32,45 +59,54 @@ export default function ActivarCuentaPage() {
           className="w-full py-3.5 px-4 rounded-[14px] border border-line-200 bg-white text-lg tracking-[3px] font-bold text-ink mb-4 font-display"
         />
 
-        <div className="text-xs font-bold tracking-wider text-muted-200 mb-2">EMAIL</div>
-        <input
-          type="email"
-          defaultValue="lucia.fernandez@gmail.com"
-          className="w-full py-3.5 px-4 rounded-[14px] border border-line-200 bg-white text-base text-ink mb-4"
-        />
-
-        <div className="text-xs font-bold tracking-wider text-muted-200 mb-2">CREAR CONTRASEÑA</div>
-        <input
-          type="password"
-          defaultValue="contraseña"
-          className="w-full py-3.5 px-4 rounded-[14px] border border-peach-100 bg-white text-base text-ink mb-4"
-        />
-
-        <label className="flex items-start gap-3 bg-[#FBF1D6] rounded-[14px] p-3.5 mb-6 cursor-pointer">
-          <span className="flex-none w-6 h-6 rounded-lg flex items-center justify-center mt-0.5" style={{ background: authorized ? "#5FB97E" : "#EADFD0" }}>
-            {authorized && (
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            )}
-          </span>
-          <span className="text-sm text-[#8A7234] leading-relaxed">
-            Autorizo a la guardería a tomar y compartir fotos de mi hijo dentro de la app.
-          </span>
+        <form onSubmit={handleSubmit}>
+          <div className="text-xs font-bold tracking-wider text-muted-200 mb-2">EMAIL</div>
           <input
-            type="checkbox"
-            checked={authorized}
-            onChange={(e) => setAuthorized(e.target.checked)}
-            className="sr-only"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full py-3.5 px-4 rounded-[14px] border border-line-200 bg-white text-base text-ink mb-1"
           />
-        </label>
+          {errors.email && <p className="text-coral-300 text-xs mb-3">{errors.email}</p>}
+          {!errors.email && <div className="mb-4"></div>}
 
-        <button
-          disabled={!authorized}
-          className={`w-full py-3.5 rounded-[15px] bg-gradient-to-b from-peach-200 to-peach-400 text-white font-extrabold text-base shadow-[0_10px_22px_-8px_rgba(238,129,100,0.7)] ${!authorized ? "opacity-50 cursor-not-allowed" : ""}`}
-        >
-          Activar mi cuenta
-        </button>
+          <div className="text-xs font-bold tracking-wider text-muted-200 mb-2">CREAR CONTRASEÑA</div>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full py-3.5 px-4 rounded-[14px] border border-peach-100 bg-white text-base text-ink mb-1"
+          />
+          {errors.password && <p className="text-coral-300 text-xs mb-3">{errors.password}</p>}
+          {!errors.password && <div className="mb-4"></div>}
+
+          <label className="flex items-start gap-3 bg-[#FBF1D6] rounded-[14px] p-3.5 mb-6 cursor-pointer">
+            <span className="flex-none w-6 h-6 rounded-lg flex items-center justify-center mt-0.5" style={{ background: authorized ? "#5FB97E" : "#EADFD0" }}>
+              {authorized && (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              )}
+            </span>
+            <span className="text-sm text-[#8A7234] leading-relaxed">
+              Autorizo a la guardería a tomar y compartir fotos de mi hijo dentro de la app.
+            </span>
+            <input
+              type="checkbox"
+              checked={authorized}
+              onChange={(e) => setAuthorized(e.target.checked)}
+              className="sr-only"
+            />
+          </label>
+
+          <button
+            type="submit"
+            disabled={!authorized}
+            className={`w-full py-3.5 rounded-[15px] bg-gradient-to-b from-peach-200 to-peach-400 text-white font-extrabold text-base shadow-[0_10px_22px_-8px_rgba(238,129,100,0.7)] ${!authorized ? "opacity-50 cursor-not-allowed" : ""}`}
+          >
+            Activar mi cuenta
+          </button>
+        </form>
       </div>
     </div>
   );
