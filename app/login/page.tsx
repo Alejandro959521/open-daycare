@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -94,6 +95,13 @@ export default function LoginPage() {
               Iniciar sesión
             </button>
           </form>
+
+          <p className="text-center mt-6 text-muted-200 text-[14.5px]">
+            ¿Te invitó la guardería?{" "}
+            <Link href="/activar-cuenta" className="text-coral-300 font-extrabold">
+              Activá tu cuenta
+            </Link>
+          </p>
         </div>
       </div>
     </div>
