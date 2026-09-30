@@ -1,6 +1,6 @@
 # SPEC 02 — Pantallas Kids y Perfil de Niño
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-09-27
 > **Objetivo:** Implementar las pantallas `/kids` (lista con buscador) y `/kids/[id]` (perfil) siguiendo los mockups `references/pantallas/ninos.dc.html` y `references/pantallas/perfil-nino.dc.html`.
