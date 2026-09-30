@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function ActivarCuentaPage() {
   const [authorized, setAuthorized] = useState(false);
@@ -107,6 +108,13 @@ export default function ActivarCuentaPage() {
             Activar mi cuenta
           </button>
         </form>
+
+        <p className="text-center mt-[22px] text-muted-200 text-[14.5px]">
+          ¿Ya tenés cuenta?{" "}
+          <Link href="/login" className="text-coral-300 font-extrabold">
+            Iniciar sesión
+          </Link>
+        </p>
       </div>
     </div>
   );
