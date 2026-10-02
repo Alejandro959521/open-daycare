@@ -63,7 +63,7 @@ export default function AddKidModal({ onClose }: AddKidModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="text-[15px] font-bold text-[#94887B]"
+            className="cursor-pointer text-[15px] font-bold text-[#94887B] transition-colors hover:text-ink"
           >
             Cancelar
           </button>
@@ -74,7 +74,7 @@ export default function AddKidModal({ onClose }: AddKidModalProps) {
             type="button"
             onClick={handleSave}
             disabled={!isValid}
-            className="text-[15px] font-extrabold text-coral-300 disabled:opacity-40"
+            className="cursor-pointer text-[15px] font-extrabold text-coral-300 transition-colors hover:text-coral-300/70 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Guardar
           </button>

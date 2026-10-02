@@ -7,7 +7,6 @@ interface KidCardProps {
 
 export default function KidCard({ kid }: KidCardProps) {
   const padreCount = kid.padres.length;
-  const hasAllergy = kid.alergias.length > 0;
   const hasParents = padreCount > 0;
   const parentText =
     padreCount === 0
@@ -17,13 +16,7 @@ export default function KidCard({ kid }: KidCardProps) {
         : `${padreCount} padres vinculados`;
 
   let rightElement: React.ReactNode = null;
-  if (hasAllergy) {
-    rightElement = (
-      <span className="rounded-full bg-[#FBD8CC] px-2.5 py-1 text-[11px] font-extrabold text-[#D9684A]">
-        {kid.alergias[0].split(" ").pop()?.toUpperCase()}
-      </span>
-    );
-  } else if (!hasParents) {
+  if (!hasParents) {
     rightElement = (
       <span className="rounded-full bg-[#F9D2DE] px-2.5 py-1 text-[11px] font-extrabold text-[#C56486]">
         VINCULAR
