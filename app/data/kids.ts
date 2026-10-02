@@ -5,6 +5,21 @@ export interface Parent {
   nombre: string;
   rol: string;
   estado: ParentStatus;
+  email?: string;
+}
+
+export type InvitationStatus = "pendiente" | "aceptada" | "expirada";
+
+export interface Invitation {
+  id: string;
+  childId: string;
+  parentName: string;
+  email: string;
+  rol: string;
+  code: string;
+  status: InvitationStatus;
+  createdAt: string;
+  expiresAt: string;
 }
 
 export interface Kid {
