@@ -84,7 +84,11 @@ export default async function KidProfilePage({ params }: PageProps) {
 
             <div className="flex w-[300px] flex-none flex-col gap-[14px]">
               <DaySummaryButton />
-              <LinkedParents padres={kid.padres} />
+              <LinkedParents
+                padres={kid.padres}
+                childId={kid.id}
+                childName={kid.nombre}
+              />
             </div>
           </div>
         </div>
