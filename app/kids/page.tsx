@@ -4,9 +4,11 @@ import { useState } from "react";
 import { kids } from "@/app/data/kids";
 import KidCard from "@/components/kid-card";
 import Sidebar from "@/components/sidebar";
+import AddKidModal from "@/components/add-kid-modal";
 
 export default function KidsPage() {
   const [search, setSearch] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const filtered = kids.filter((kid) =>
     kid.nombre.toLowerCase().includes(search.toLowerCase())
@@ -26,8 +28,9 @@ export default function KidsPage() {
                 Niños
               </h1>
             </div>
-            <a
-              href="/add-kid"
+            <button
+              type="button"
+              onClick={() => setShowModal(true)}
               className="flex items-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] px-[18px] py-[11px] text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.7)]"
             >
               <svg
@@ -43,7 +46,7 @@ export default function KidsPage() {
                 <path d="M12 5v14M5 12h14" />
               </svg>
               Agregar niño
-            </a>
+            </button>
           </div>
 
           <div className="mb-[22px] flex items-center gap-[11px] rounded-[14px] border border-line-200 bg-surface p-3.5 px-4">
@@ -85,6 +88,7 @@ export default function KidsPage() {
           </div>
         </div>
       </main>
+      {showModal && <AddKidModal onClose={() => setShowModal(false)} />}
     </div>
   );
 }

@@ -55,7 +55,7 @@ export function calcularEdad(fechaNacimiento: string): number {
   return age;
 }
 
-export let kids: Kid[] = [
+export const kids: Kid[] = [
   {
     id: "1",
     nombre: "Mateo Fernández",
