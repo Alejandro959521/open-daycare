@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { kids } from "@/app/data/kids";
+import { kids as initialKids, kids as globalKids } from "@/app/data/kids";
 import KidCard from "@/components/kid-card";
 import Sidebar from "@/components/sidebar";
 import AddKidModal from "@/components/add-kid-modal";
@@ -9,8 +9,13 @@ import AddKidModal from "@/components/add-kid-modal";
 export default function KidsPage() {
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [kidsList, setKidsList] = useState(initialKids);
 
-  const filtered = kids.filter((kid) =>
+  function refreshKidsList() {
+    setKidsList([...globalKids]);
+  }
+
+  const filtered = kidsList.filter((kid) =>
     kid.nombre.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -88,7 +93,7 @@ export default function KidsPage() {
           </div>
         </div>
       </main>
-      {showModal && <AddKidModal onClose={() => setShowModal(false)} />}
+      {showModal && <AddKidModal onClose={() => setShowModal(false)} onKidAdded={refreshKidsList} />}
     </div>
   );
 }

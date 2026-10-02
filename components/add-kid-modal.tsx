@@ -5,11 +5,27 @@ import { addKid, calcularEdad, getAvatarColors, type Kid } from "@/app/data/kids
 
 const SALAS = ["Soles", "Lunas", "Estrellas"];
 
-interface AddKidModalProps {
-  onClose: () => void;
+function isValidDate(dateStr: string): boolean {
+  if (!dateStr) return false;
+  const parts = dateStr.split("/");
+  if (parts.length !== 3) return false;
+  const day = parseInt(parts[0], 10);
+  const month = parseInt(parts[1], 10);
+  const year = parseInt(parts[2], 10);
+  if (isNaN(day) || isNaN(month) || isNaN(year)) return false;
+  if (parts[0].length !== 2 || parts[1].length !== 2 || parts[2].length !== 4) return false;
+  if (month < 1 || month > 12) return false;
+  if (day < 1 || day > 31) return false;
+  const date = new Date(year, month - 1, day);
+  return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
 }
 
-export default function AddKidModal({ onClose }: AddKidModalProps) {
+interface AddKidModalProps {
+  onClose: () => void;
+  onKidAdded?: () => void;
+}
+
+export default function AddKidModal({ onClose, onKidAdded }: AddKidModalProps) {
   const [nombre, setNombre] = useState("");
   const [fechaNacimiento, setFechaNacimiento] = useState("");
   const [sala, setSala] = useState("");
@@ -17,7 +33,8 @@ export default function AddKidModal({ onClose }: AddKidModalProps) {
   const [alergiaInput, setAlergiaInput] = useState("");
   const [notasMedicas, setNotasMedicas] = useState("");
 
-  const isValid = nombre.trim() !== "" && fechaNacimiento.trim() !== "" && sala !== "";
+  const isDateInvalid = fechaNacimiento.trim() !== "" && !isValidDate(fechaNacimiento);
+  const isValid = nombre.trim() !== "" && fechaNacimiento.trim() !== "" && sala !== "" && !isDateInvalid;
 
   function handleAddAlergia(e: KeyboardEvent<HTMLInputElement>) {
     const value = alergiaInput.trim();
@@ -53,6 +70,7 @@ export default function AddKidModal({ onClose }: AddKidModalProps) {
     };
 
     addKid(newKid);
+    onKidAdded?.();
     onClose();
   }
 
@@ -100,8 +118,11 @@ export default function AddKidModal({ onClose }: AddKidModalProps) {
                 placeholder="dd/mm/aaaa"
                 value={fechaNacimiento}
                 onChange={(e) => setFechaNacimiento(e.target.value)}
-                className="w-full rounded-[14px] border border-[1.5px] border-[#EADFD0] bg-white px-4 py-[13px] text-[15px] text-ink placeholder:text-[#B6A99B]"
+                className={`w-full rounded-[14px] border border-[1.5px] ${isDateInvalid ? "border-red-400" : "border-[#EADFD0]"} bg-white px-4 py-[13px] text-[15px] text-ink placeholder:text-[#B6A99B]`}
               />
+              {isDateInvalid && (
+                <p className="mt-1 text-[12px] font-bold text-red-500">Fecha inválida</p>
+              )}
             </div>
             <div className="flex-1">
               <label className="mb-2 block text-[12px] font-extrabold tracking-[0.7px] text-[#94887B]">
