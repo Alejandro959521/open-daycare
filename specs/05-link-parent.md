@@ -1,6 +1,6 @@
 # SPEC 05 — Vincular padre
 
-> **Estado:** Draft
+> **Estado:** Aprobado
 > **Depende de:** SPEC 02, SPEC 04
 > **Fecha:** 2026-10-02
 > **Objetivo:** Implementar un modal de "Vincular padre" que se abre desde el perfil del niño, genera un código de invitación alfanumérico, simula el envío por email y muestra el historial de invitaciones en el perfil, siguiendo el mockup `references/pantallas/vincular-padre.dc.html`.
