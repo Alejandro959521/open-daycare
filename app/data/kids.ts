@@ -18,6 +18,7 @@ export interface Kid {
   alergias: string[];
   padres: Parent[];
   colorAvatar: { bg: string; textColor: string };
+  notasMedicas?: string;
 }
 
 const NOMBRE_COLOR_MAP: Record<string, { bg: string; textColor: string }> = {
@@ -37,7 +38,24 @@ export function getAvatarColors(nombre: string): { bg: string; textColor: string
   return NOMBRE_COLOR_MAP[normalizado] ?? { bg: "#D8CBBA", textColor: "#7A6E60" };
 }
 
-export const kids: Kid[] = [
+export function calcularEdad(fechaNacimiento: string): number {
+  const parts = fechaNacimiento.split("/");
+  if (parts.length !== 3) return 0;
+  const day = parseInt(parts[0], 10);
+  const month = parseInt(parts[1], 10);
+  const year = parseInt(parts[2], 10);
+  if (isNaN(day) || isNaN(month) || isNaN(year)) return 0;
+  const birth = new Date(year, month - 1, day);
+  const today = new Date();
+  let age = today.getFullYear() - birth.getFullYear();
+  const monthDiff = today.getMonth() - birth.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+  return age;
+}
+
+export let kids: Kid[] = [
   {
     id: "1",
     nombre: "Mateo Fernández",
@@ -154,4 +172,8 @@ export const kids: Kid[] = [
 
 export function getKidById(id: string): Kid | undefined {
   return kids.find((kid) => kid.id === id);
+}
+
+export function addKid(kid: Kid): void {
+  kids.push(kid);
 }
