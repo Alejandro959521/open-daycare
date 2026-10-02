@@ -1,6 +1,6 @@
 # SPEC 04 — Modal Agregar Niño
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 02
 > **Fecha:** 2026-10-01
 > **Objetivo:** Implementar un modal de "Agregar niño" que se abre desde el botón en `/kids`, agrega el niño a la lista del spec 02 y cierra el modal, siguiendo el mockup `references/pantallas/agregar-nino.dc.html`.
@@ -73,18 +73,18 @@ export function calcularEdad(fechaNacimiento: string): number;
 
 ## Criterios de aceptación
 
-- [ ] Clic en el botón "Agregar niño" en `/kids` abre el modal overlay.
-- [ ] Modal muestra campos: Nombre completo, Fecha de nacimiento, Sala, Alergias, Notas médicas.
-- [ ] Campo "Sala" es un dropdown con lista fija ["Soles", "Lunas", "Estrellas"].
-- [ ] Input de alergias permite agregar tags/chips al presionar Enter o coma.
-- [ ] Cada alergia agregada aparece como un badge/chip independiente.
-- [ ] Botón "Cancelar" cierra el modal sin guardar.
-- [ ] Botón "Guardar" agrega el niño a la lista del spec 02 y cierra el modal.
-- [ ] Validación: botón "Guardar" deshabilitado si faltan nombre, fecha o sala.
-- [ ] El niño agregado aparece inmediatamente en la lista de `/kids`.
-- [ ] Campos calculados automáticamente: edad, inicial, ingreso, padres (vacío), colorAvatar.
-- [ ] Modal usa estilos del mockup (Fredoka/Nunito, paleta cálida, bordes redondeados).
-- [ ] `npm run lint` y `npm run build` pasan sin errores.
+- [x] Clic en el botón "Agregar niño" en `/kids` abre el modal overlay.
+- [x] Modal muestra campos: Nombre completo, Fecha de nacimiento, Sala, Alergias, Notas médicas.
+- [x] Campo "Sala" es un dropdown con lista fija ["Soles", "Lunas", "Estrellas"].
+- [x] Input de alergias permite agregar tags/chips al presionar Enter o coma.
+- [x] Cada alergia agregada aparece como un badge/chip independiente.
+- [x] Botón "Cancelar" cierra el modal sin guardar.
+- [x] Botón "Guardar" agrega el niño a la lista del spec 02 y cierra el modal.
+- [x] Validación: botón "Guardar" deshabilitado si faltan nombre, fecha o sala.
+- [x] El niño agregado aparece inmediatamente en la lista de `/kids`.
+- [x] Campos calculados automáticamente: edad, inicial, ingreso, padres (vacío), colorAvatar.
+- [x] Modal usa estilos del mockup (Fredoka/Nunito, paleta cálida, bordes redondeados).
+- [x] `npm run lint` y `npm run build` pasan sin errores.
 
 ## Decisiones
 
