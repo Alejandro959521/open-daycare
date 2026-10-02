@@ -1,6 +1,6 @@
 # SPEC 05 — Vincular padre
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 02, SPEC 04
 > **Fecha:** 2026-10-02
 > **Objetivo:** Implementar un modal de "Vincular padre" que se abre desde el perfil del niño, genera un código de invitación alfanumérico, simula el envío por email y muestra el historial de invitaciones en el perfil, siguiendo el mockup `references/pantallas/vincular-padre.dc.html`.
@@ -90,25 +90,25 @@ Clave localStorage: `opendaycare:invitations` → `Invitation[]`.
 
 ## Criterios de aceptación
 
-- [ ] El modal se abre al hacer click en "Vincular otro padre" desde el perfil del niño.
-- [ ] El modal muestra el nombre real del niño en el header (ej: "a Mateo Fernández").
-- [ ] Banner informativo azul visible con mensaje sobre el correo y el feed del niño.
-- [ ] Campo nombre obligatorio, muestra error si está vacío o tiene menos de 2 caracteres.
-- [ ] Campo email valida formato y muestra error si es inválido.
-- [ ] El sistema rechaza emails ya vinculados o con invitación pendiente (mensaje: "Ya existe una invitación pendiente para este email").
-- [ ] Parentesco obligatorio: uno de los chips (Mamá/Papá/Tutor/a) debe estar seleccionado.
-- [ ] Al enviar, se genera un código alfanumérico de 5 caracteres único.
-- [ ] El código se muestra en caja destacada con fondo amarillo punteado (`#FBF1D6`, borde `#E6D08A`).
-- [ ] Texto "Vence en 7 días" visible debajo del código.
-- [ ] Botón para copiar el código al portapapeles con feedback visual.
-- [ ] Después de enviar, se muestra mensaje de éxito "Invitación enviada a [email]".
-- [ ] Tras 2 segundos, se navega automáticamente al perfil del niño.
-- [ ] El modal solo se cierra con el botón X (no con click fuera ni Escape).
-- [ ] La lista de padres vinculados muestra las invitaciones debajo de los padres activos.
-- [ ] Las invitaciones muestran: nombre, email, parentesco y badge de estado (`pendiente`/`aceptada`/`expirada`).
-- [ ] Los datos se persisten en localStorage bajo la clave `opendaycare:invitations`.
-- [ ] El modal sigue el sistema de diseño (Fredoka/Nunito, paleta cálida, bordes redondeados).
-- [ ] `npm run lint` y `npm run build` pasan sin errores.
+- [x] El modal se abre al hacer click en "Vincular otro padre" desde el perfil del niño.
+- [x] El modal muestra el nombre real del niño en el header (ej: "a Mateo Fernández").
+- [x] Banner informativo azul visible con mensaje sobre el correo y el feed del niño.
+- [x] Campo nombre obligatorio, muestra error si está vacío o tiene menos de 2 caracteres.
+- [x] Campo email valida formato y muestra error si es inválido.
+- [x] El sistema rechaza emails ya vinculados o con invitación pendiente (mensaje: "Ya existe una invitación pendiente para este email").
+- [x] Parentesco obligatorio: uno de los chips (Mamá/Papá/Tutor/a) debe estar seleccionado.
+- [x] Al enviar, se genera un código alfanumérico de 5 caracteres único.
+- [x] El código se muestra en caja destacada con fondo amarillo punteado (`#FBF1D6`, borde `#E6D08A`).
+- [x] Texto "Vence en 7 días" visible debajo del código.
+- [x] Botón para copiar el código al portapapeles con feedback visual.
+- [x] Después de enviar, se muestra mensaje de éxito "Invitación enviada a [email]".
+- [x] Tras 2 segundos, se navega automáticamente al perfil del niño.
+- [x] El modal solo se cierra con el botón X (no con click fuera ni Escape).
+- [x] La lista de padres vinculados muestra las invitaciones debajo de los padres activos.
+- [x] Las invitaciones muestran: nombre, email, parentesco y badge de estado (`pendiente`/`aceptada`/`expirada`).
+- [x] Los datos se persisten en localStorage bajo la clave `opendaycare:invitations`.
+- [x] El modal sigue el sistema de diseño (Fredoka/Nunito, paleta cálida, bordes redondeados).
+- [x] `npm run lint` y `npm run build` pasan sin errores.
 
 ## Decisiones
 
