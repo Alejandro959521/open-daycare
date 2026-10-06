@@ -1,6 +1,6 @@
 # SPEC 06 — Create post
 
-> **Estado:** Aproved
+> **Estado:** Implementado
 > **Depende de:** SPEC 01, SPEC 04
 > **Fecha:** 2026-10-03
 > **Objetivo:** Implementar la pantalla de crear publicación en `/crear-publicacion` con selector de destinatarios (niños de la sala actual desde `kids.ts`), tipos de publicación fijos, descripción obligatoria, persistencia en localStorage y aparición inmediata en el feed.
