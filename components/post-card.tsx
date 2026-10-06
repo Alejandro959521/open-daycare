@@ -3,8 +3,12 @@ import { estilosPorCategoria, type CategoriaPost, type Post } from "@/app/data/m
 import LikeButton from "@/components/like-button";
 
 const CATEGORY_LABELS: Record<CategoriaPost, string> = {
-  logro: "LOGRO",
+  comida: "COMIDA",
+  siesta: "SIESTA",
   actividad: "ACTIVIDAD",
+  logro: "LOGRO",
+  animo: "ÁNIMO",
+  foto: "FOTO",
   anuncio: "ANUNCIO",
 };
 

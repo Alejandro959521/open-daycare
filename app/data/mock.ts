@@ -1,17 +1,26 @@
-export type CategoriaPost = "logro" | "actividad" | "anuncio";
+export type CategoriaPost =
+  | "comida"
+  | "siesta"
+  | "actividad"
+  | "logro"
+  | "animo"
+  | "foto"
+  | "anuncio";
 
 export interface Post {
   id: string;
-  autor: string; // "Mateo" | "Anuncio general"
-  avatar: { inicial: string | null; bg: string; color: string }; // inicial null = icono megáfono
-  hora: string; // "14:20"
+  autor: string;
+  avatar: { inicial: string | null; bg: string; color: string };
+  hora: string;
   publicadoPorVos: boolean;
   categoria: CategoriaPost;
-  destinatarios: string; // "familia de Mateo" | "toda la sala"
+  destinatarios: string;
+  destinatariosIds?: string[];
   texto: string;
-  foto?: { etiqueta: string }; // solo en actividad
+  foto?: { etiqueta: string };
   corazones: number;
   comentarios: number;
+  createdAt?: string;
 }
 
 export const usuario = { nombre: "Caro Giménez", inicial: "C", rol: "Maestra · Soles" };
@@ -57,12 +66,15 @@ export const posts: Post[] = [
   },
 ];
 
-// Chip por categoría: logro #CFEBD8/#3E9B6C · actividad #C7E7F1/#2E89A6 · anuncio #CCD8F4/#4E72C8
 export const estilosPorCategoria: Record<
   CategoriaPost,
   { chipBg: string; chipColor: string; punto: string }
 > = {
-  logro: { chipBg: "#CFEBD8", chipColor: "#3E9B6C", punto: "#3E9B6C" },
+  comida: { chipBg: "#FBD8CC", chipColor: "#D9684A", punto: "#D9684A" },
+  siesta: { chipBg: "#E7DCF6", chipColor: "#7B5FC0", punto: "#7B5FC0" },
   actividad: { chipBg: "#C7E7F1", chipColor: "#2E89A6", punto: "#2E89A6" },
+  logro: { chipBg: "#CFEBD8", chipColor: "#3E9B6C", punto: "#3E9B6C" },
+  animo: { chipBg: "#F9D2DE", chipColor: "#C56486", punto: "#C56486" },
+  foto: { chipBg: "#FBD8CC", chipColor: "#D9684A", punto: "#D9684A" },
   anuncio: { chipBg: "#CCD8F4", chipColor: "#4E72C8", punto: "#4E72C8" },
 };

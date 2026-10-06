@@ -185,6 +185,10 @@ export const kids: Kid[] = [
   },
 ];
 
+export function getKidsBySala(sala: string): Kid[] {
+  return kids.filter((kid) => kid.sala === sala);
+}
+
 export function getKidById(id: string): Kid | undefined {
   return kids.find((kid) => kid.id === id);
 }
