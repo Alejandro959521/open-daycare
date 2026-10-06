@@ -13,6 +13,7 @@ export function addUserPost(post: Post): void {
   const posts = getUserPosts();
   posts.unshift(post);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+  window.dispatchEvent(new Event("opendaycare:posts-updated"));
 }
 
 export function generatePostId(): string {

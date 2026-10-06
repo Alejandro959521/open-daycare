@@ -1,15 +1,14 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { type CategoriaPost, type Post } from "@/app/data/mock";
 import { addUserPost, generatePostId } from "@/app/data/posts";
 import { type Kid } from "@/app/data/kids";
 
-interface CreatePostFormProps {
+interface CreatePostModalProps {
   kids: Kid[];
   salaNombre: string;
+  onClose: () => void;
 }
 
 const TIPOS: { key: CategoriaPost; label: string }[] = [
@@ -32,8 +31,7 @@ const TIPO_COLORS: Record<CategoriaPost, { bg: string; color: string }> = {
   anuncio: { bg: "#CCD8F4", color: "#4E72C8" },
 };
 
-export default function CreatePostForm({ kids, salaNombre }: CreatePostFormProps) {
-  const router = useRouter();
+export default function CreatePostModal({ kids, salaNombre, onClose }: CreatePostModalProps) {
   const [selectedKids, setSelectedKids] = useState<string[]>([]);
   const [todaLaSala, setTodaLaSala] = useState(false);
   const [tipoSeleccionado, setTipoSeleccionado] = useState<CategoriaPost | null>(null);
@@ -94,22 +92,26 @@ export default function CreatePostForm({ kids, salaNombre }: CreatePostFormProps
     };
 
     addUserPost(post);
-    router.push("/");
+    onClose();
   }
 
   return (
-    <div className="flex min-h-screen items-start justify-center bg-cream px-6 py-10">
-      <div className="w-full max-w-[580px] overflow-hidden rounded-[24px] border border-line-200 bg-[#FBF4EC] shadow-[0_20px_50px_-24px_rgba(63,54,46,.35)]">
-        <div className="flex items-center justify-between border-b border-line-200 px-[26px] py-5">
-          <Link href="/" className="text-[15px] font-bold text-[#94887B]">
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/40 p-6">
+      <div className="w-full max-w-[580px] overflow-hidden rounded-[24px] border border-[#ECE0D0] bg-[#FBF4EC] shadow-[0_20px_50px_-24px_rgba(63,54,46,.35)]">
+        <div className="flex items-center justify-between border-b border-[#ECE0D0] px-[26px] py-5">
+          <button
+            type="button"
+            onClick={onClose}
+            className="cursor-pointer text-[15px] font-bold text-[#94887B] transition-colors hover:text-ink"
+          >
             Cancelar
-          </Link>
+          </button>
           <span className="font-display text-[18px] font-semibold text-ink">Nueva publicación</span>
           <button
             type="submit"
             form="create-post-form"
             disabled={!isValid}
-            className="text-[15px] font-extrabold text-coral-100 disabled:opacity-40"
+            className="cursor-pointer text-[15px] font-extrabold text-coral-100 transition-colors hover:text-coral-100/70 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Publicar
           </button>
@@ -188,12 +190,12 @@ export default function CreatePostForm({ kids, salaNombre }: CreatePostFormProps
             value={descripcion}
             onChange={(e) => setDescripcion(e.target.value)}
             placeholder="Contá cómo le fue hoy…"
-            className="mb-[22px] min-h-[120px] w-full resize-none rounded-[14px] border-[1.5px] border-line-300 bg-white p-4 text-[15px] leading-[1.5] text-ink placeholder:text-[#B6A99B]"
+            className="mb-[22px] min-h-[120px] w-full resize-none rounded-[14px] border-[1.5px] border-[#EADFD0] bg-white p-4 text-[15px] leading-[1.5] text-ink placeholder:text-[#B6A99B]"
           />
 
           <div className="mb-2.5 text-[12px] font-extrabold tracking-[0.7px] text-[#94887B]">FOTOS</div>
           <div className="flex gap-3">
-            <div className="flex h-[96px] w-[96px] items-center justify-center rounded-[14px] border border-line-200 bg-[#F4ECE1] text-[#CBB89F]">
+            <div className="flex h-[96px] w-[96px] items-center justify-center rounded-[14px] border border-[#ECE0D0] bg-[#F4ECE1] text-[#CBB89F]">
               <svg
                 width="26"
                 height="26"

@@ -1,9 +1,25 @@
-import Link from "next/link";
+"use client";
+
+import { useState, useEffect } from "react";
 import { sala, usuario } from "@/app/data/mock";
+import { getKidsBySala } from "@/app/data/kids";
 import Sidebar from "@/components/sidebar";
 import FeedPosts from "@/components/feed-posts";
+import CreatePostModal from "@/components/create-post-form";
+
+const kids = getKidsBySala(sala.nombre);
 
 export default function Page() {
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    function handleOpen() {
+      setShowModal(true);
+    }
+    window.addEventListener("opendaycare:create-post", handleOpen);
+    return () => window.removeEventListener("opendaycare:create-post", handleOpen);
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col bg-cream lg:flex-row">
       <Sidebar active="feed" />
@@ -21,9 +37,10 @@ export default function Page() {
             </p>
           </div>
 
-          <Link
-            href="/crear-publicacion"
-            className="mb-6 flex items-center gap-3.5 rounded-[18px] border border-line-200 bg-surface px-[18px] py-3.5 shadow-[0_4px_14px_-10px_rgba(120,90,60,.4)]"
+          <button
+            type="button"
+            onClick={() => setShowModal(true)}
+            className="mb-6 flex w-full cursor-pointer items-center gap-3.5 rounded-[18px] border border-line-200 bg-surface px-[18px] py-3.5 text-left shadow-[0_4px_14px_-10px_rgba(120,90,60,.4)] transition-all hover:shadow-[0_4px_18px_-8px_rgba(120,90,60,.5)]"
           >
             <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-peach-300 font-display text-[16px] font-semibold text-white">
               {usuario.inicial}
@@ -44,7 +61,7 @@ export default function Page() {
                 <circle cx="12" cy="13" r="4" />
               </svg>
             </span>
-          </Link>
+          </button>
 
           <div className="mb-3.5 flex items-center gap-3.5">
             <span className="text-[12.5px] font-extrabold tracking-[0.8px] text-muted-300">PUBLICADO HOY</span>
@@ -54,6 +71,7 @@ export default function Page() {
           <FeedPosts />
         </div>
       </main>
+      {showModal && <CreatePostModal kids={kids} salaNombre={sala.nombre} onClose={() => setShowModal(false)} />}
     </div>
   );
 }

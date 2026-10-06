@@ -133,10 +133,13 @@ function SidebarContent({ active, onNavigate }: SidebarContentProps) {
           <div className="mt-0.5 text-[11.5px] text-muted-100">Sala {sala.nombre}</div>
         </div>
       </Link>
-      <Link
-        href="/crear-publicacion"
-        onClick={onNavigate}
-        className="mb-[18px] flex w-full items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] p-3 text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]"
+      <button
+        type="button"
+        onClick={() => {
+          window.dispatchEvent(new Event("opendaycare:create-post"));
+          onNavigate();
+        }}
+        className="mb-[18px] flex w-full cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] p-3 text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]"
       >
         <svg
           width="17"
@@ -151,7 +154,7 @@ function SidebarContent({ active, onNavigate }: SidebarContentProps) {
           <path d="M12 5v14M5 12h14" />
         </svg>
         Nueva publicación
-      </Link>
+      </button>
       <nav className="flex flex-1 flex-col gap-1">
         {NAV_ITEMS.map((item) => (
           <Link

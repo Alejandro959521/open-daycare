@@ -102,9 +102,13 @@ export default function PostCard({ post }: PostCardProps) {
           {post.comentarios}
         </Link>
         <span className="flex-1" />
-        <Link href="/crear-publicacion" className="text-[14px] font-extrabold text-coral-300">
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new Event("opendaycare:create-post"))}
+          className="cursor-pointer text-[14px] font-extrabold text-coral-300"
+        >
           Editar
-        </Link>
+        </button>
       </div>
     </article>
   );

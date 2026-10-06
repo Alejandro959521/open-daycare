@@ -2,20 +2,43 @@
 
 import { useSyncExternalStore } from "react";
 import { posts as mockPosts, type Post } from "@/app/data/mock";
-import { getUserPosts } from "@/app/data/posts";
 import PostCard from "@/components/post-card";
 
-function subscribe(callback: () => void) {
-  window.addEventListener("storage", callback);
-  return () => window.removeEventListener("storage", callback);
+const STORAGE_KEY = "opendaycare:posts";
+const EMPTY_POSTS: Post[] = [];
+
+let cachedPosts: Post[] | null = null;
+
+function loadPosts(): Post[] {
+  if (typeof window === "undefined") return [];
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (!stored) return [];
+  return JSON.parse(stored);
 }
 
+const subscribers = new Set<() => void>();
+
+function subscribe(callback: () => void) {
+  subscribers.add(callback);
+  return () => subscribers.delete(callback);
+}
+
+function notifyChange() {
+  cachedPosts = loadPosts();
+  subscribers.forEach((cb) => cb());
+}
+
+window.addEventListener("opendaycare:posts-updated", notifyChange);
+
 function getSnapshot(): Post[] {
-  return getUserPosts();
+  if (cachedPosts === null) {
+    cachedPosts = loadPosts();
+  }
+  return cachedPosts;
 }
 
 function getServerSnapshot(): Post[] {
-  return [];
+  return EMPTY_POSTS;
 }
 
 export default function FeedPosts() {
