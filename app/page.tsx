@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { posts, sala, usuario } from "@/app/data/mock";
-import PostCard from "@/components/post-card";
+import { sala, usuario } from "@/app/data/mock";
 import Sidebar from "@/components/sidebar";
+import FeedPosts from "@/components/feed-posts";
 
 export default function Page() {
   return (
@@ -51,11 +51,7 @@ export default function Page() {
             <span className="h-px flex-1 bg-line-300" />
           </div>
 
-          <div className="flex flex-col gap-4">
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
+          <FeedPosts />
         </div>
       </main>
     </div>
