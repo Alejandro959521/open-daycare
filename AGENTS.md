@@ -40,6 +40,13 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - Context7 Usaremos este MCP para traer la documentación actualizada del framework.
 
+- Supabase MCP configurado y autenticado. Proyecto: `ephcorbcufqhaojdckyp`. Usar para operaciones de base de datos, auth, edge functions, storage, y debugging.
+
+## Skills de Supabase
+
+- `supabase` — Cargar ANTES de hacer cualquier tarea con Supabase: schema changes, migraciones, RLS, auth, edge functions, storage, queries, debugging de errores, lectura de logs.
+- `supabase-postgres-best-practices` — Cargar ANTES de escribir o cambiar cualquier cosa que viva en Postgres: crear/alterar tablas, columnas, índices, triggers, funciones, RLS policies, migraciones, vectores, queues, jobs programados.
+
 ## Spec Driven Development - Skills
 
 - /spec Usaremos esta habilidad para crear las especificaciones.
